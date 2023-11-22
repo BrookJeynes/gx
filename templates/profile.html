@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>gx | profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/htmx.org@1.9.6"
+        integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "blue": "#1DA1F2",
+                        "dark-gray": "#1F2327",
+                        "gray": "#181818",
+                        "silver": "#AFB1B2",
+                        "platinum": "E7E9EA",
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class>
+    <div class="min-h-screen bg-black text-white">
+        <div class="pb-10 mx-auto px-5 w-full lg:px-0 lg:max-w-[90ch]">
+            <header class="flex flex-col border border-dark-gray">
+                <div class="p-4">
+                    <h1 class="text-2xl font-bold">{{.User.Username}}</h1>
+                </div>
+            </header>
+            <main>
+                {{if not .Tweets}}
+                <div class="flex items-center justify-center mt-6">
+                    <span class="text-silver">This user has no tweets :(</span>
+                </div>
+                {{else}}
+                {{range .Tweets}}
+                {{template "tweet.html" .}}
+                {{end}}
+                {{end}}
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

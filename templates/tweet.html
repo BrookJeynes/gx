@@ -1,0 +1,36 @@
+<div class="border border-dark-gray p-4">
+    <div class="flex flex-row gap-3">
+        <div class="w-11 h-11 bg-blue rounded"></div>
+        <div class="flex flex-col gap-2 w-full">
+            <div>
+                <span class="font-medium text-lg">{{.User.Name}}</span>
+                <span class="text-silver">@{{.User.Username}}</span>
+                ·
+                <span class="text-silver">{{ .Tweet.TimePosted }}</span>
+            </div>
+            <div>
+                <span>{{.Tweet.TweetBody}}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <div>
+                    <i class="fa fa-retweet" aria-hidden="true"></i>
+                    <span>{{.Tweet.Retweets}}</span>
+                </div>
+
+                <div>
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <span>{{.Tweet.Likes}}</span>
+                </div>
+
+                <div>
+                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                    <span>{{.Tweet.Views}}</span>
+                </div>
+
+                <div>
+                    <i class="fa fa-share-square-o" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

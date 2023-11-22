@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>gx | home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/htmx.org@1.9.6"
+        integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "blue": "#1DA1F2",
+                        "dark-gray": "#1F2327",
+                        "gray": "#181818",
+                        "silver": "#AFB1B2",
+                        "platinum": "E7E9EA",
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="min-h-screen bg-black text-white">
+        <div class="pb-10 mx-auto px-5 w-full lg:px-0 lg:max-w-[90ch]">
+            <header class="flex flex-col border border-dark-gray">
+                <div class="p-4">
+                    <h1 class="text-2xl font-bold">Home</h1>
+                </div>
+                <div class="flex justify-between items-center text-lg font-medium">
+                    <div class="hover:bg-gray text-center h-full w-full p-4"><span>For you</span></div>
+                    <div class="hover:bg-gray text-center h-full w-full p-4"><span>Following</span></div>
+                </div>
+            </header>
+
+            {{if .User}}
+            <div class="flex flex-row gap-4 border border-dark-gray p-4">
+                <div>
+                    <span class="font-medium text-lg">{{.User.Name}}</span>
+                    <span class="text-silver">@{{.User.Username}}</span>
+                </div>
+                <form hx-post="/tweets/create" hx-trigger="submit" hx-target="#tweets" hx-swap="beforeend"
+                    class="flex flex-col gap-4 w-full">
+                    <input type="text" name="body" placeholder="What is happening?!"
+                        class="focus:outline-none bg-transparent text-silver text-xl" />
+
+                    <div class="flex justify-end">
+                        <input type="submit" value="Post" class="rounded-full font-bold bg-blue py-2 px-5 text-lg" />
+                    </div>
+                </form>
+            </div>
+            {{end}}
+
+            <main id="tweets">
+                {{range .Tweets}}
+                {{template "tweet.html" .}}
+                {{end}}
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

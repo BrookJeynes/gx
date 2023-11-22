@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>gx | login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/htmx.org@1.9.6"
+        integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "blue": "#1DA1F2",
+                        "dark-gray": "#1F2327",
+                        "gray": "#181818",
+                        "silver": "#AFB1B2",
+                        "platinum": "E7E9EA",
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class>
+    <div class="min-h-screen bg-black text-white">
+        <div class="pb-10 mx-auto px-5 w-full lg:px-0 lg:max-w-[90ch]">
+            <header class="flex flex-col border border-dark-gray">
+                <div class="p-4">
+                    <h1 class="text-2xl font-bold">Login</h1>
+                </div>
+                <div id="error"></div>
+                <form hx-post="/login" hx-trigger="submit" hx-target="#error" hx-swap="innerHTML"
+                    class="flex justify-between items-center text-lg font-medium p-6">
+                    <input type="text" name="username" placeholder="username"
+                        class="focus:outline-none bg-transparent text-silver text-xl" />
+                    <input type="password" name="password" placeholder="password..."
+                        class="focus:outline-none bg-transparent text-silver text-xl" />
+
+                    <input type="submit" value="Login" class="rounded-full font-bold bg-blue py-2 px-5 text-lg" />
+                </form>
+            </header>
+        </div>
+    </div>
+</body>
+
+</html>
